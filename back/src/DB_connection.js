@@ -10,6 +10,7 @@ const sequelize = new Sequelize(
 );
 
 /* Le pasamos el modelo */
+/* Cada que llamamos a CharacterModel, hace que venga la información de la DB segun el modelo. Nos devuelve la info modelada.*/
 
 CharacterModel(sequelize);
 
