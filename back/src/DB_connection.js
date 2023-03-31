@@ -12,6 +12,7 @@ const sequelize = new Sequelize(
 /* Le pasamos el modelo */
 
 CharacterModel(sequelize);
+
 module.exports = {
   ...sequelize.models,
   sequelize,
