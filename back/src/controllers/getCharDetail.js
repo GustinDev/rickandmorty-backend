@@ -1,7 +1,7 @@
 //En controllers se maneja la lógica, manejamos el request:
 const axios = require('axios');
 
-//Le damos la URL de donde sacar la información.
+//Le damos la URL de donde sacar la información. Async Await Function.
 const URL = 'https://rickandmortyapi.com/api/character/';
 
 const getCharDetail = async (req, res) => {

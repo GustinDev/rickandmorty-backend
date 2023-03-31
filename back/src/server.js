@@ -1,15 +1,17 @@
-//Levantamos el servidor local - Decimos el puerto.
-const express = require('express');
-const server = express();
-const PORT = process.env.PORT || 3001;
+//Requerimos express (server) - Decimos el puerto.
+const PORT = 3001;
+const server = require('./App');
 
-//Linkeamos el server con las rutas.
-const router = require('./routes');
-//Le damos la URL
-server.use('/rickandmorty', router);
+//DB
+const { sequelize } = require('./DB_connection');
+const { saveApiData } = require('./controllers/saveApiData');
 
-//Confirmamos el puerto.
-
-server.listen(PORT, () => {
-  console.log(`Servidor escuchando en el puerto ${PORT}`);
+//Sincronizamos la DB (le pasamos el API y que cree los datos allá):
+//Levantamos el server  y confirmamos el puerto.
+sequelize.sync({ force: true }).then(async () => {
+  console.log('DB conectada, master');
+  await saveApiData();
+  server.listen(3001, () => {
+    console.log('Server raised in port: 3001');
+  });
 });
